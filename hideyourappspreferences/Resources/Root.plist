@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>bundle</key>
+			<string>AppList</string>
+			<key>isController</key>
+			<string>1</string>
+			<key>label</key>
+			<string>Select apps to hide</string>
+			<key>ALAllowsSelection</key>
+			<string>1</string>
+			<key>ALSettingsKeyPrefix</key>
+			<string></string>
+			<key>ALSettingsDefaultValue</key>
+			<string>0</string>
+			<key>ALSettingsPath</key>
+			<string>/var/mobile/Library/Preferences/ca.menushka.hideyourapps.preferences.plist</string>
+			<key>ALSingleEnabledMode</key>
+			<false/>
+			<key>ALChangeNotification</key>
+			<string>ca.menushka.hideyourapps.preferences/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>respring:</string>
+			<key>label</key>
+			<string>Respring</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>openUrl:</string>
+			<key>url</key>
+			<string>https://twitter.com/menushkaDev</string>
+			<key>icon</key>
+			<string>twitter.png</string>
+			<key>label</key>
+			<string>Follow me on Twitter</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>openUrl:</string>
+			<key>url</key>
+			<string>https://menushka.ca/</string>
+			<key>icon</key>
+			<string>website.png</string>
+			<key>label</key>
+			<string>Check out my website</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>openUrl:</string>
+			<key>url</key>
+			<string>https://github.com/menushka/HideYourApps</string>
+			<key>icon</key>
+			<string>github.png</string>
+			<key>label</key>
+			<string>Source Code</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>HideYourApps</string>
+</dict>
+</plist>

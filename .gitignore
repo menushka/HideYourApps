@@ -1,0 +1,13 @@
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+### THEOS-Tweak ###
+._*
+*.deb
+.debmake
+_
+obj
+.theos
+.DS_Store
