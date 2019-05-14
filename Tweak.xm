@@ -15,8 +15,7 @@ NSArray *appsToHide;
 		if ([appsToHide containsObject: [arg1 applicationBundleID]]) {
 			return;	
 		}
-	} 
-	%log;
+	}
 	%orig;
 }
 
@@ -26,7 +25,6 @@ NSArray *appsToHide;
 			return;	
 		}
 	}
-	%log;
 	%orig;
 }
 
@@ -36,7 +34,6 @@ NSArray *appsToHide;
 			return;	
 		}
 	}
-	%log;
 	%orig;
 }
 
