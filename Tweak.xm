@@ -2,54 +2,42 @@
 - (id) applicationBundleID;
 @end
 
-@interface SBIconListView : UIView
-@end
-
-@interface SBRootIconListView : SBIconListView
-@end
-
-@interface SBIconListModel : NSObject
-@property (nonatomic, retain) NSString *similarityHash;
-@property (nonatomic, retain) NSArray *cachedIcons;
-- (NSString *) generateHash:(NSArray<SBApplicationIcon *> *) icons;
-- (void)cacheIcons:(NSArray<SBApplicationIcon *> *) icons result:(NSArray *) appsToHide;
+@interface SBIconIndexMutableList
+-(id)nodes;
 @end
 
 NSArray *appsToHide;
 
-%hook SBIconListModel
+%hook SBIconIndexMutableList
 
-%property (nonatomic, retain) NSString *similarityHash;
-%property (nonatomic, retain) NSArray *cachedIcons;
+-(void)addNode:(id)arg1 {
+	if ([arg1 isMemberOfClass: NSClassFromString(@"SBApplicationIcon")]) {
+		if ([appsToHide containsObject: [arg1 applicationBundleID]]) {
+			return;	
+		}
+	} 
+	%log;
+	%orig;
+}
 
-- (id)icons {
-	NSArray<SBApplicationIcon *> *icons = %orig;
-
-	if ([[self generateHash: icons] isEqualToString: self.similarityHash]) return self.cachedIcons;
-
-	NSMutableArray *newIcons = [NSMutableArray arrayWithCapacity:[icons count]];
-	for (int i = 0; i < [icons count]; i++) {
-		if (![appsToHide containsObject: [icons[i] applicationBundleID]]) {
-			[newIcons addObject: icons[i]];
+-(void)insertNode:(id)arg1 atIndex:(unsigned long long)arg2 {
+	if ([arg1 isMemberOfClass: NSClassFromString(@"SBApplicationIcon")]) {
+		if ([appsToHide containsObject: [arg1 applicationBundleID]]) {
+			return;	
 		}
 	}
-	NSLog(@"HideYourApps: icons - %@", self);
-	NSArray *result = [newIcons copy];
-
-	[self cacheIcons: icons result: result];
-
-	return result;
+	%log;
+	%orig;
 }
 
-%new
-- (NSString *)generateHash:(NSArray<SBApplicationIcon *> *) icons {
-	return [[icons valueForKey:@"applicationBundleID"] componentsJoinedByString:@""];
-}
-
-%new
-- (void)cacheIcons:(NSArray<SBApplicationIcon *> *) icons result:(NSArray *) result {
-	self.similarityHash = [self generateHash: icons];
-	self.cachedIcons = result;
+-(void)replaceNodeAtIndex:(unsigned long long)arg1 withNode:(id)arg2 {
+	if ([arg2 isMemberOfClass: NSClassFromString(@"SBApplicationIcon")]) {
+		if ([appsToHide containsObject: [arg2 applicationBundleID]]) {
+			return;	
+		}
+	}
+	%log;
+	%orig;
 }
 
 %end
