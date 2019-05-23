@@ -2,69 +2,33 @@
 - (NSString *)applicationBundleID;
 @end
 
-@interface SBIconIndexMutableList : NSObject
-- (void)removeNodeAtIndex:(NSUInteger)index;
-@end
-
-@interface SBIconListModel : NSObject
-- (void)removeIcon:(SBApplicationIcon *)icon;
-- (NSUInteger)indexForIcon:(SBApplicationIcon *)icon;
-@end
-
-@interface SBIconListView : UIView
-@property (nonatomic, retain) SBIconListModel *model;
-- (NSArray *)icons;
-- (void)removeIcon:(SBApplicationIcon *)icon;
-- (void)setIconsNeedLayout;
-- (void)layoutIconsNow;
-- (void)hya_removeHiddenApps; // New
-@end
-
-@interface SBFolderController : UIViewController
-@property (nonatomic, retain) NSArray *iconListViews;
-@end
-
 NSArray *appsToHide;
 
-%hook SBFolderController
+%hook SBIconListModel
 
-- (void)viewDidLoad {
-	%orig;
-	for(SBIconListView *listView in self.iconListViews) {
-		[listView hya_removeHiddenApps];
+- (id)placeIcon:(SBApplicationIcon *)icon atIndex:(unsigned long long*)arg2 {
+	if(![appsToHide containsObject:[icon applicationBundleID]]) {
+		return %orig;
 	}
+	return nil;
+}
+
+- (id)insertIcon:(SBApplicationIcon *)icon atIndex:(unsigned long long*)arg2 options:(unsigned long long)arg3 {
+	if(![appsToHide containsObject:[icon applicationBundleID]]) {
+		return %orig;
+	}
+	return nil;
+}
+
+- (BOOL)addIcon:(SBApplicationIcon *)icon asDirty:(BOOL)arg2 {
+	if(![appsToHide containsObject:[icon applicationBundleID]]) {
+		return %orig;
+	}
+	return NO;
 }
 
 %end
 
-%hook SBIconListView
-
-%new
-- (void)hya_removeHiddenApps {
-	SBIconListModel *model = [self model];
-	SBIconIndexMutableList *indexList = (SBIconIndexMutableList *)[model valueForKey:@"_icons"];
-
-	NSArray *icons = [self icons];
-
-	for(SBApplicationIcon *icon in icons) {
-		if([appsToHide containsObject:[icon applicationBundleID]]) {
-			NSUInteger index = [model indexForIcon:icon];
-			[indexList removeNodeAtIndex:index];
-			[model removeIcon:icon];
-			[self removeIcon:icon];
-		}
-	}
-
-	[self setIconsNeedLayout];
-	[self layoutIconsNow];
-}
-
-- (void)setEditing:(BOOL)editing {
-	%orig;
-	[self hya_removeHiddenApps];
-}
-
-%end
 
 void loadPrefs() {
 	NSMutableDictionary *appList = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/ca.menushka.hideyourapps.preferences.plist"];

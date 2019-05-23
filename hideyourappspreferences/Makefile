@@ -1,3 +1,6 @@
+TARGET = iphone:11.2
+ARCHS = arm64 arm64e
+
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = HideYourAppsPreferences
