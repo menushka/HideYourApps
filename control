@@ -1,9 +1,9 @@
 Package: ca.menushka.hideyourapps
 Name: HideYourApps
 Depends: mobilesubstrate, applist
-Version: 1.1.0
+Version: 1.2.0
 Architecture: iphoneos-arm
 Description: A tweak to hide apps on your Springboard.
 Maintainer: Menushka Weeratunga
-Author: Menushka Weeratunga
+Author: Menushka Weeratunga and Blake Boxberger
 Section: Tweaks

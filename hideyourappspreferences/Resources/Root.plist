@@ -40,7 +40,33 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>reset:</string>
+			<key>label</key>
+			<string>Reset and Respring</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>openUrl:</string>
+			<key>url</key>
+			<string>https://github.com/menushka/HideYourApps</string>
+			<key>icon</key>
+			<string>github.png</string>
+			<key>label</key>
+			<string>Source Code</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Menushka Weeratunga</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -68,15 +94,21 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Blake Boxberger</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>action</key>
 			<string>openUrl:</string>
 			<key>url</key>
-			<string>https://github.com/menushka/HideYourApps</string>
+			<string>https://twitter.com/blakeboxberger</string>
 			<key>icon</key>
-			<string>github.png</string>
+			<string>twitter.png</string>
 			<key>label</key>
-			<string>Source Code</string>
+			<string>Follow me on Twitter</string>
 		</dict>
 	</array>
 	<key>title</key>

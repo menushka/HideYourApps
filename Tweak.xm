@@ -1,40 +1,67 @@
 @interface SBApplicationIcon : NSObject
-- (id) applicationBundleID;
+- (NSString *)applicationBundleID;
 @end
 
-@interface SBIconIndexMutableList
--(id)nodes;
+@interface SBIconIndexMutableList : NSObject
+- (void)removeNodeAtIndex:(NSUInteger)index;
+@end
+
+@interface SBIconListModel : NSObject
+- (void)removeIcon:(SBApplicationIcon *)icon;
+- (NSUInteger)indexForIcon:(SBApplicationIcon *)icon;
+@end
+
+@interface SBIconListView : UIView
+@property (nonatomic, retain) SBIconListModel *model;
+- (NSArray *)icons;
+- (void)removeIcon:(SBApplicationIcon *)icon;
+- (void)setIconsNeedLayout;
+- (void)layoutIconsNow;
+- (void)hya_removeHiddenApps; // New
+@end
+
+@interface SBFolderController : UIViewController
+@property (nonatomic, retain) NSArray *iconListViews;
 @end
 
 NSArray *appsToHide;
 
-%hook SBIconIndexMutableList
+%hook SBFolderController
 
--(void)addNode:(id)arg1 {
-	if ([arg1 isMemberOfClass: NSClassFromString(@"SBApplicationIcon")]) {
-		if ([appsToHide containsObject: [arg1 applicationBundleID]]) {
-			return;	
-		}
-	}
+- (void)viewDidLoad {
 	%orig;
+	for(SBIconListView *listView in self.iconListViews) {
+		[listView hya_removeHiddenApps];
+	}
 }
 
--(void)insertNode:(id)arg1 atIndex:(unsigned long long)arg2 {
-	if ([arg1 isMemberOfClass: NSClassFromString(@"SBApplicationIcon")]) {
-		if ([appsToHide containsObject: [arg1 applicationBundleID]]) {
-			return;	
+%end
+
+%hook SBIconListView
+
+%new
+- (void)hya_removeHiddenApps {
+	SBIconListModel *model = [self model];
+	SBIconIndexMutableList *indexList = (SBIconIndexMutableList *)[model valueForKey:@"_icons"];
+
+	NSArray *icons = [self icons];
+
+	for(SBApplicationIcon *icon in icons) {
+		if([appsToHide containsObject:[icon applicationBundleID]]) {
+			NSUInteger index = [model indexForIcon:icon];
+			[indexList removeNodeAtIndex:index];
+			[model removeIcon:icon];
+			[self removeIcon:icon];
 		}
 	}
-	%orig;
+
+	[self setIconsNeedLayout];
+	[self layoutIconsNow];
 }
 
--(void)replaceNodeAtIndex:(unsigned long long)arg1 withNode:(id)arg2 {
-	if ([arg2 isMemberOfClass: NSClassFromString(@"SBApplicationIcon")]) {
-		if ([appsToHide containsObject: [arg2 applicationBundleID]]) {
-			return;	
-		}
-	}
+- (void)setEditing:(BOOL)editing {
 	%orig;
+	[self hya_removeHiddenApps];
 }
 
 %end
