@@ -1,0 +1,7 @@
+{
+    "GENERAL_HEADER" = "General";
+    "GENERAL_FOOTER" = "General settings for tweak.";
+
+    "SPECIAL_THANKS_HEADER" = "Special Thanks";
+    "SPECIAL_THANKS_FOOTER" = "Fixing all the bugs.";
+}

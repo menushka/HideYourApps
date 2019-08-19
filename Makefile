@@ -4,7 +4,8 @@ ARCHS = arm64 arm64e
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = HideYourApps
-HideYourApps_FILES = Tweak.xm
+HideYourApps_FILES = $(wildcard *.xm) $(wildcard *.m)
+HideYourApps_EXTRA_FRAMEWORKS += Cephei
 
 include $(THEOS_MAKE_PATH)/tweak.mk
 
