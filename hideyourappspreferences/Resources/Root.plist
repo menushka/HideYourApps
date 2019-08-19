@@ -10,6 +10,30 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>defaults</key>
+			<string>ca.menushka.hideyourapps.preferences.settings</string>
+			<key>key</key>
+			<string>enabled</string>
+			<key>default</key>
+			<true/>
+			<key>label</key>
+			<string>Enabled</string>
+			<key>PostNotification</key>
+			<string>ca.menushka.hideyourapps.preferences/ReloadPrefs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>GENERAL_HEADER</string>
+			<key>footerText</key>
+			<string>GENERAL_FOOTER</string>
+			<key>isStaticText</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>bundle</key>
 			<string>AppList</string>
@@ -49,66 +73,26 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>action</key>
-			<string>openUrl:</string>
-			<key>url</key>
-			<string>https://github.com/menushka/HideYourApps</string>
-			<key>icon</key>
-			<string>github.png</string>
 			<key>label</key>
-			<string>Source Code</string>
+			<string>SPECIAL_THANKS_HEADER</string>
+			<key>footerText</key>
+			<string>SPECIAL_THANKS_FOOTER</string>
+			<key>isStaticText</key>
+			<true/>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Menushka Weeratunga</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>action</key>
-			<string>openUrl:</string>
-			<key>url</key>
-			<string>https://twitter.com/menushkaDev</string>
-			<key>icon</key>
-			<string>twitter.png</string>
-			<key>label</key>
-			<string>Follow me on Twitter</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>action</key>
-			<string>openUrl:</string>
-			<key>url</key>
-			<string>https://menushka.ca/</string>
-			<key>icon</key>
-			<string>website.png</string>
-			<key>label</key>
-			<string>Check out my website</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
+			<key>id</key>
+			<string>twitter</string>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>big</key>
+			<true/>
+			<key>height</key>
+			<integer>56</integer>
 			<key>label</key>
 			<string>Blake Boxberger</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>action</key>
-			<string>openUrl:</string>
-			<key>url</key>
-			<string>https://twitter.com/blakeboxberger</string>
-			<key>icon</key>
-			<string>twitter.png</string>
-			<key>label</key>
-			<string>Follow me on Twitter</string>
+			<key>user</key>
+			<string>blakeboxberger</string>
 		</dict>
 	</array>
 	<key>title</key>

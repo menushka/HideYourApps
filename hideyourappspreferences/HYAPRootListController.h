@@ -1,6 +1,6 @@
-#import <Preferences/PSListController.h>
+#import <MenushkaPrefs/MWRootListController.h>
 
-@interface HYAPRootListController : PSListController
+@interface HYAPRootListController : MWRootListController
 - (void)openUrl:(PSSpecifier *)specifier;
 - (void)respring:(PSSpecifier *)specifier;
 - (void)reset:(PSSpecifier *)specifier;

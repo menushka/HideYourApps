@@ -5,6 +5,9 @@ include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = HideYourAppsPreferences
 HideYourAppsPreferences_FILES = HYAPRootListController.m
+HideYourAppsPreferences_EXTRA_FRAMEWORKS += Cephei
+HideYourAppsPreferences_EXTRA_FRAMEWORKS += CepheiPrefs
+HideYourAppsPreferences_EXTRA_FRAMEWORKS += MenushkaPrefs
 HideYourAppsPreferences_INSTALL_PATH = /Library/PreferenceBundles
 HideYourAppsPreferences_FRAMEWORKS = UIKit
 HideYourAppsPreferences_PRIVATE_FRAMEWORKS = Preferences
